@@ -1,0 +1,15 @@
+FEATURES
+---------------
+- RFID card reader
+- -> Read as decimal integer input w/o checksum byte
+- -> Store all taps as key/value (struct?) 
+- -> Beep confirmation
+
+- Bluetooth module
+- -> Share Serial pin with Bluetooth (test heavily - do we need tx?)
+- -> Send key/value pairings to phone app on request
+- -> LED on board automatically handles confirmations for pairing and communication 
+- - -> Use custom LED + piezo setup for confirming sent data
+
+- WiFi Module
+- > API for status
