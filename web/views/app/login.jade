@@ -1,0 +1,73 @@
+doctype html
+html(lang='en')
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    // Meta, title, CSS, favicons, etc.
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title Just Clock In - Login
+    link(rel='shortcut icon', href='/favicon.ico', type='image/x-icon')
+    link(rel='icon', href='/favicon.ico', type='image/x-icon')
+    // Bootstrap
+    link(href='bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')
+    // Font Awesome
+    link(href='font-awesome/css/font-awesome.min.css', rel='stylesheet')
+    // NProgress
+    link(href='nprogress/nprogress.css', rel='stylesheet')
+    // Animate.css
+    link(href='animate.css/animate.min.css', rel='stylesheet')
+    // Custom Theme Style
+    link(href='stylesheets/custom.css', rel='stylesheet')
+  body.login
+    div
+      a#signup.hiddenanchor
+      a#signin.hiddenanchor
+      .login_wrapper
+        .animate.form.login_form
+          section.login_content
+            form(action='/app', method='get')
+              h1 Login Form
+              div
+                input.form-control(type='text', placeholder='Username', required='')
+              div
+                input.form-control(type='password', placeholder='Password', required='')
+              div
+                input.btn.btn-default.submit(type='submit', value='Log In')
+                a.reset_pass(href='#') Lost your password?
+              .clearfix
+              .separator
+                p.change_link
+                  | New to site?
+                  a.to_register(href='#signup')  Create Account
+                .clearfix
+                br
+                div
+                  h1
+                    img(src='images/logo.png')
+                  p
+                    | Copyright © 2017 All Rights Reserved. Just Clock In. Privacy and Terms
+        #register.animate.form.registration_form
+          section.login_content
+            form
+              h1 Create Account
+              div
+                input.form-control(type='text', placeholder='Username', required='')
+              div
+                input.form-control(type='email', placeholder='Email', required='')
+              div
+                input.form-control(type='password', placeholder='Password', required='')
+              div
+                a.btn.btn-default.submit(href='index.html') Submit
+              .clearfix
+              .separator
+                p.change_link
+                  | Already a member ?
+                  a.to_register(href='#signin')  Log in
+                .clearfix
+                br
+                div
+                  h1
+                    img(src='images/logo.png')
+                  p
+                    | Copyright © 2017 All Rights Reserved. Just Clock In. Privacy and Terms
