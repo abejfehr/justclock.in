@@ -38,10 +38,10 @@ var routerMaker = function (db) {
         if (shift.out && shift.in) {
           // Convert the time from milliseconds to hours
           hours += Math.round((shift.out - shift.in) / 60 / 60 * 10) / 10;
+          data.push([employee.first_name + ' ' + employee.last_name, shift.in, shift.out]);
         }
       }
 
-      data.push([employee.first_name + ' ' + employee.last_name, hours]);
     }
 
     var send = function (err, report) {
