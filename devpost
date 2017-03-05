@@ -1,0 +1,40 @@
+## Inspiration
+
+Construction companies need to track their employees' work hours and be able to reliably report off of them. Unfortunately, construction jobs may be in rural areas where there is no reliable network connection.
+
+## What it does
+
+
+
+## How we built it
+
+For the hardware we used an Arduino Uno with a Bluetooth module, RFID module, and a Real Time Clock. The Android app is written natively in Java and communicates with the Arduino over Bluetooth to retrieve data. The data is then forwarded over HTTP to an Express server on AWS hardware. The database is a custom, non-persistent, in-memory JSON database.
+
+Node Modules
+------------
+- excel4node
+- fluentreports
+
+Templates
+---------
+- landing page: https://startbootstrap.com/template-overviews/landing-page/
+- admin page: https://github.com/puikinsh/gentelella
+
+## Challenges we ran into
+
+* Complications connecting to BLE devices using iPhone 5S
+* Creating PDF reports and Excel spreadsheets on the fly from a NodeJS server
+* Naked domain records on AWS without Elastic Beanstalk or Route53
+* Allowing simultaneous serial communication between 2 modules through an Arduino
+* My AWS account was suspended so my $100 couldn't be spent
+* Many, _many_, off-by-one errors
+
+## Accomplishments that we're proud of
+
+The entire thing. 2 people built this in less than 24 hours, it's a pretty amazing thing.
+
+## What we learned
+
+## What's next for JustClock.in
+
+Get investors and make the product a reality

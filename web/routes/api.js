@@ -16,8 +16,32 @@ var routerMaker = function (db) {
      *   "timestamp": 12312334234,
      * }
      */
+     var data = req.body.data;
+
      // Sort the data into punches per employee
+     var employees = {};
+     for (let i = 0; i < data.length; ++i) {
+       var punch = data[i];
+       if (!employees[punch.employee_id]) {
+         employees[punch.employee_id] = [];
+       }
+       employees[punch.employee_id].push(punch.timestamp);
+     }
      // Try to sort the punches into shifts (the shifts could be open-ended)
+     for (let employee_id of employees) {
+       var punches = employees[employee_id].sort(function (a, b) {
+         return b - a;
+       });
+
+       for (let i = 0; i < punches.length - 1; i += 2) {
+         db.addPunch(employee_id, {
+           in: punches[i],
+           out: punches[i+1],
+         });
+         // This throws out the very last punch in case there's an in without an out
+       }
+     }
+
      // Add that data into the database
      console.log("This worked!");
   });
@@ -59,9 +83,8 @@ var routerMaker = function (db) {
     // Go through all of the employees and put their shit in here
     var employees = db.getEmployees();
     for (let i = 0; i < employees.length; ++i) {
-      ws.cell(i+1,1).string(employees[i].first_name).style(style);
-      ws.cell(i+1,2).string(employees[i].last_name).style(style);
-      ws.cell(i+1,3).number(employees[i].wage).style(style);
+      ws.cell(i+1,1).string(employees[i].first_name + ' ' + employees[i].last_name).style(style);
+      ws.cell(i+1,2).number(employees[i].wage).style(style);
     }
 
     wb.write('Report.xlsx', res);

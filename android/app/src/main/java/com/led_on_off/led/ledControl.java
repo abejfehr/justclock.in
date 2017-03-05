@@ -25,6 +25,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -178,10 +179,17 @@ public class ledControl extends ActionBarActivity {
                 }
 
                 // Send the data to the server
+                JSONObject body = new JSONObject();
+                try {
+                    body.put("data", allEmployees);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
                 RequestQueue queue = Volley.newRequestQueue(this);
                 String url ="https://www.justclock.in/api/import";
 
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, body, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                     }

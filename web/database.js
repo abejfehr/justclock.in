@@ -9,9 +9,17 @@ var createDatabase = function () {
         wage: 23.50,
         shifts: [
           {
-            in: 1488665550,
-            out: 1488672954,
+            in: 1488203810,
+            out: 1488234844,
           },
+          {
+            in: 1488290344,
+            out: 1488316024,
+          },
+          {
+            in: 1488463084,
+            out: 1488491884,
+          }
         ],
       },
       {
@@ -21,9 +29,21 @@ var createDatabase = function () {
         wage: 23.50,
         shifts: [
           {
-            in: 1488665550,
-            out: 1488672954,
+            in: 1488203641,
+            out: 1488234064,
           },
+          {
+            in: 1488288784,
+            out: 1488318604,
+          },
+          {
+            in: 1488376804,
+            out: 1488404704,
+          },
+          {
+            in: 1488461644,
+            out: 1488493324,
+          }
         ],
       },
       {
@@ -33,9 +53,13 @@ var createDatabase = function () {
         wage: 23.50,
         shifts: [
           {
-            in: 1488665550,
-            out: 1488672954,
+            in: 1488201674,
+            out: 1488232804,
           },
+          {
+            in: 1488463264,
+            out: 1488491044,
+          }
         ],
       },
       {
@@ -45,9 +69,21 @@ var createDatabase = function () {
         wage: 23.50,
         shifts: [
           {
-            in: 1488665550,
-            out: 1488672954,
+            in: 1488202034,
+            out: 1488232864,
           },
+          {
+            in: 1488288064,
+            out: 1488320464,
+          },
+          {
+            in: 1488376624,
+            out: 1488405484,
+          },
+          {
+            in: 1488462844,
+            out: 1488492124,
+          }
         ],
       },
       {
@@ -57,45 +93,13 @@ var createDatabase = function () {
         wage: 23.50,
         shifts: [
           {
-            in: 1488665550,
-            out: 1488672954,
+            in: 1488202444,
+            out: 1488231904,
           },
-        ],
-      },
-      {
-        id: 11821232,
-        first_name: 'Victor',
-        last_name: 'Johnson',
-        wage: 23.50,
-        shifts: [
           {
-            in: 1488665550,
-            out: 1488672954,
-          },
-        ],
-      },
-      {
-        id: 11829381,
-        first_name: 'Emily',
-        last_name: 'Groulx',
-        wage: 23.50,
-        shifts: [
-          {
-            in: 1488665550,
-            out: 1488672954,
-          },
-        ],
-      },
-      {
-        id: 11723455,
-        first_name: 'Tina',
-        last_name: 'Fey',
-        wage: 23.50,
-        shifts: [
-          {
-            in: 1488665550,
-            out: 1488672954,
-          },
+            in: 1488290824,
+            out: 1488318724,
+          }
         ],
       },
     ],
@@ -126,7 +130,6 @@ var createDatabase = function () {
         }
       }
       if (!found) {
-        console.log('THE DATA: ', data);
         _db.employees.push(Object.assign({
           shifts: [],
         }, data));
