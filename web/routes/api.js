@@ -34,12 +34,12 @@ var routerMaker = function (db) {
      var keys = Object.keys(employees);
      for (let j = 0; j < keys.length; ++j) {
        var employee_id = keys[j];
-       console.log('x');
+       console.log(employee_id, employees[employee_id]);
        var punches = employees[employee_id].sort(function (a, b) {
          return b - a;
        });
 
-       console.log(4);
+       console.log(punches);
        for (let i = 0; i < punches.length - 1; i += 2) {
          console.log(punches[i], punches[i+1]);
          db.addShift(employee_id, {
