@@ -28,22 +28,21 @@ var routerMaker = function (db) {
        employees[punch.employee_id].push(punch.timestamp);
      }
      // Try to sort the punches into shifts (the shifts could be open-ended)
-     for (let employee_id of employees) {
+     var keys = Object.keys(employees);
+     for (let j = 0; j < keys.length; ++j) {
+       var employee_id = keys[j];
        var punches = employees[employee_id].sort(function (a, b) {
          return b - a;
        });
 
        for (let i = 0; i < punches.length - 1; i += 2) {
-         db.addPunch(employee_id, {
-           in: punches[i],
-           out: punches[i+1],
+         db.addShift(employee_id, {
+           in: Number(punches[i]),
+           out: Number(punches[i+1]),
          });
          // This throws out the very last punch in case there's an in without an out
        }
      }
-
-     // Add that data into the database
-     console.log("This worked!");
   });
 
   router.post('/employees/manage/:id?', function(req, res, next) {

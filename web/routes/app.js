@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var Report = require('fluentreports').Report;
+var leftPad = function (thing) {
+  return require('left-pad')(thing, 2, '0');
+}
 
 var routerMaker = function (db) {
 
@@ -24,6 +27,11 @@ var routerMaker = function (db) {
     res.render('app/employees/edit', { title: 'Employees - Edit', section: 'employees', employee: db.getEmployee(req.params.id) });
   });
 
+  var prettyDate = function (timestamp) {
+    var date = new Date(timestamp * 1000);
+    return `${leftPad(date.getHours())}:${leftPad(date.getMinutes())}:${leftPad(date.getSeconds())} ${date.getMonth()+1}-${date.getDate()}-${date.getFullYear()}`;
+  }
+
   router.get('/reports/employees', function (req, res, next) {
     // Our Simple Data in Array format:
     var data = [];
@@ -38,10 +46,10 @@ var routerMaker = function (db) {
         if (shift.out && shift.in) {
           // Convert the time from milliseconds to hours
           hours += Math.round((shift.out - shift.in) / 60 / 60 * 10) / 10;
+          data.push([employee.first_name + ' ' + employee.last_name, prettyDate(shift.in), prettyDate(shift.out)]);
         }
       }
 
-      data.push([employee.first_name + ' ' + employee.last_name, hours]);
     }
 
     var send = function (err, report) {
@@ -50,7 +58,7 @@ var routerMaker = function (db) {
     }
 
     var headerFunction = function(Report) {
-      Report.print('Employee Hours Summary', {fontSize: 24, bold: true, align: 'center'});
+      Report.print('Employee Hours Summary', { fontSize: 24, bold: true, align: 'center' });
       Report.newLine(2);
     };
 
@@ -64,7 +72,7 @@ var routerMaker = function (db) {
       .data(data)
       .pageHeader(headerFunction)
       .pageFooter(footerFunction)
-      .detail( [[0, 300],[1, 50]])
+      .detail( [[0, 200], [1, 150], [2, 150]])
       .render(send);
 
     // res.render('app/reports/employees', { title: 'Reports - Employees', employees: db.getEmployees() });
