@@ -6,25 +6,25 @@ html(lang='en')
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(name='viewport', content='width=device-width, initial-scale=1')
-    title Just Clock In - Dashboard
+    title Just Clock In - #{title}
     link(rel='shortcut icon', href='/favicon.ico', type='image/x-icon')
     link(rel='icon', href='/favicon.ico', type='image/x-icon')
     // Bootstrap
-    link(href='bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')
+    link(href='/app/bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')
     // Font Awesome
-    link(href='font-awesome/css/font-awesome.min.css', rel='stylesheet')
+    link(href='/app/font-awesome/css/font-awesome.min.css', rel='stylesheet')
     // NProgress
-    link(href='nprogress/nprogress.css', rel='stylesheet')
+    link(href='/app/nprogress/nprogress.css', rel='stylesheet')
     // iCheck
-    link(href='iCheck/skins/flat/green.css', rel='stylesheet')
+    link(href='/app/iCheck/skins/flat/green.css', rel='stylesheet')
     // bootstrap-progressbar
-    link(href='bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css', rel='stylesheet')
+    link(href='/app/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css', rel='stylesheet')
     // JQVMap
-    link(href='jqvmap/dist/jqvmap.min.css', rel='stylesheet')
+    link(href='/app/jqvmap/dist/jqvmap.min.css', rel='stylesheet')
     // bootstrap-daterangepicker
-    link(href='bootstrap-daterangepicker/daterangepicker.css', rel='stylesheet')
+    link(href='/app/bootstrap-daterangepicker/daterangepicker.css', rel='stylesheet')
     // Custom Theme Style
-    link(href='stylesheets/custom.css', rel='stylesheet')
+    link(href='/app/stylesheets/custom.css', rel='stylesheet')
   body.nav-md
     .container.body
       .main_container
@@ -32,12 +32,12 @@ html(lang='en')
           .left_col.scroll-view
             .navbar.nav_title(style='border: 0;')
               a.site_title(href='index.html')
-                img(src='images/logo-inv.png')
+                img(src='/app/images/logo-inv.png')
             .clearfix
             // menu profile quick info
             .profile.clearfix
               .profile_pic
-                img.img-circle.profile_img(src='images/profile.jpg', alt='...')
+                img.img-circle.profile_img(src='/app/images/profile.jpg', alt='...')
               .profile_info
                 span Welcome,
                 h2 Abe Fehr
@@ -49,7 +49,7 @@ html(lang='en')
                 h3 General
                 ul.nav.side-menu
                   li
-                    a
+                    a(href='/app')
                       i.fa.fa-home
                       |  Home
                   li
@@ -59,17 +59,7 @@ html(lang='en')
                       span.fa.fa-chevron-down
                     ul.nav.child_menu
                       li
-                        a(href='form.html') General Form
-                      li
-                        a(href='form_advanced.html') Advanced Components
-                      li
-                        a(href='form_validation.html') Form Validation
-                      li
-                        a(href='form_wizards.html') Form Wizard
-                      li
-                        a(href='form_upload.html') Form Upload
-                      li
-                        a(href='form_buttons.html') Form Buttons
+                        a(href='employees/manage') Manage Employees
                   li
                     a
                       i.fa.fa-line-chart
@@ -77,7 +67,7 @@ html(lang='en')
                       span.fa.fa-chevron-down
                     ul.nav.child_menu
                       li
-                        a(href='general_elements.html') General Elements
+                        a(href='reports/employees') General Elements
                       li
                         a(href='media_gallery.html') Media Gallery
                       li
@@ -126,7 +116,7 @@ html(lang='en')
               ul.nav.navbar-nav.navbar-right
                 li
                   a.user-profile.dropdown-toggle(href='javascript:;', data-toggle='dropdown', aria-expanded='false')
-                    img(src='images/profile.jpg', alt='')
+                    img(src='/app/images/profile.jpg', alt='')
                     | Abe Fehr
                     span.fa.fa-angle-down
                   ul.dropdown-menu.dropdown-usermenu.pull-right
@@ -150,7 +140,7 @@ html(lang='en')
                     li
                       a
                         span.image
-                          img(src='images/profile.jpg', alt='Profile Image')
+                          img(src='/app/images/profile.jpg', alt='Profile Image')
                         span
                           span Abe Fehr
                           span.time 3 mins ago
@@ -159,7 +149,7 @@ html(lang='en')
                     li
                       a
                         span.image
-                          img(src='images/profile.jpg', alt='Profile Image')
+                          img(src='/app/images/profile.jpg', alt='Profile Image')
                         span
                           span Abe Fehr
                           span.time 3 mins ago
@@ -168,7 +158,7 @@ html(lang='en')
                     li
                       a
                         span.image
-                          img(src='images/profile.jpg', alt='Profile Image')
+                          img(src='/app/images/profile.jpg', alt='Profile Image')
                         span
                           span John Smith
                           span.time 3 mins ago
@@ -177,7 +167,7 @@ html(lang='en')
                     li
                       a
                         span.image
-                          img(src='images/profile.jpg', alt='Profile Image')
+                          img(src='/app/images/profile.jpg', alt='Profile Image')
                         span
                           span John Smith
                           span.time 3 mins ago
@@ -190,7 +180,8 @@ html(lang='en')
                           i.fa.fa-angle-right
         // /top navigation
         // page content
-        block content
+        .right_col(role='main')
+          block content
         // footer content
         footer
           .pull-right
@@ -198,41 +189,41 @@ html(lang='en')
           .clearfix
         // /footer content
     // jQuery
-    script(src='jquery/dist/jquery.min.js')
+    script(src='/app/jquery/dist/jquery.min.js')
     // Bootstrap
-    script(src='bootstrap/dist/js/bootstrap.min.js')
+    script(src='/app/bootstrap/dist/js/bootstrap.min.js')
     // FastClick
-    script(src='fastclick/lib/fastclick.js')
+    script(src='/app/fastclick/lib/fastclick.js')
     // NProgress
-    script(src='nprogress/nprogress.js')
+    script(src='/app/nprogress/nprogress.js')
     // Chart.js
-    script(src='Chart.js/dist/Chart.min.js')
+    script(src='/app/Chart.js/dist/Chart.min.js')
     // gauge.js
-    script(src='gauge.js/dist/gauge.min.js')
+    script(src='/app/gauge.js/dist/gauge.min.js')
     // bootstrap-progressbar
-    script(src='bootstrap-progressbar/bootstrap-progressbar.min.js')
+    script(src='/app/bootstrap-progressbar/bootstrap-progressbar.min.js')
     // iCheck
-    script(src='iCheck/icheck.min.js')
+    script(src='/app/iCheck/icheck.min.js')
     // Skycons
-    script(src='skycons/skycons.js')
+    script(src='/app/skycons/skycons.js')
     // Flot
-    script(src='Flot/jquery.flot.js')
-    script(src='Flot/jquery.flot.pie.js')
-    script(src='Flot/jquery.flot.time.js')
-    script(src='Flot/jquery.flot.stack.js')
-    script(src='Flot/jquery.flot.resize.js')
+    script(src='/app/Flot/jquery.flot.js')
+    script(src='/app/Flot/jquery.flot.pie.js')
+    script(src='/app/Flot/jquery.flot.time.js')
+    script(src='/app/Flot/jquery.flot.stack.js')
+    script(src='/app/Flot/jquery.flot.resize.js')
     // Flot plugins
-    script(src='flot.orderbars/js/jquery.flot.orderBars.js')
-    script(src='flot-spline/js/jquery.flot.spline.min.js')
-    script(src='flot.curvedlines/curvedLines.js')
+    script(src='/app/flot.orderbars/js/jquery.flot.orderBars.js')
+    script(src='/app/flot-spline/js/jquery.flot.spline.min.js')
+    script(src='/app/flot.curvedlines/curvedLines.js')
     // DateJS
-    script(src='DateJS/build/date.js')
+    script(src='/app/DateJS/build/date.js')
     // JQVMap
-    script(src='jqvmap/dist/jquery.vmap.js')
-    script(src='jqvmap/dist/maps/jquery.vmap.world.js')
-    script(src='jqvmap/examples/js/jquery.vmap.sampledata.js')
+    script(src='/app/jqvmap/dist/jquery.vmap.js')
+    script(src='/app/jqvmap/dist/maps/jquery.vmap.world.js')
+    script(src='/app/jqvmap/examples/js/jquery.vmap.sampledata.js')
     // bootstrap-daterangepicker
-    script(src='moment/min/moment.min.js')
-    script(src='bootstrap-daterangepicker/daterangepicker.js')
+    script(src='/app/moment/min/moment.min.js')
+    script(src='/app/bootstrap-daterangepicker/daterangepicker.js')
     // Custom Theme Scripts
-    script(src='javascripts/custom.min.js')
+    script(src='/app/javascripts/custom.min.js')

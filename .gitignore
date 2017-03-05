@@ -1,2 +1,5 @@
 # Mac generated stuff
 .DS_Store
+
+# Stupid errors
+npm-debug.log

@@ -1,0 +1,73 @@
+extends ../layout
+
+block content
+  div
+    .page-title
+      .title_left
+        h3 Employee Management
+      .title_right
+        .col-md-5.col-sm-5.col-xs-12.form-group.pull-right.top_search
+          .input-group
+            input.form-control(type='text', placeholder='Search for...')
+            span.input-group-btn
+              button.btn.btn-default(type='button') Go!
+    .clearfix
+    .row
+      .col-md-12.col-sm-12.col-xs-12
+        .x_panel
+          .x_title
+            h2
+              | Edit Employee
+            ul.nav.navbar-right.panel_toolbox
+              li
+                a.collapse-link
+                  i.fa.fa-chevron-up
+              li.dropdown
+                a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
+                  i.fa.fa-wrench
+                ul.dropdown-menu(role='menu')
+                  li
+                    a(href='#') Settings 1
+                  li
+                    a(href='#') Settings 2
+              li
+                a.close-link
+                  i.fa.fa-close
+            .clearfix
+          .x_content
+            br
+            form#demo-form2.form-horizontal.form-label-left(data-parsley-validate='')
+              .form-group
+                label.control-label.col-md-3.col-sm-3.col-xs-12(for='name')
+                  | Name
+                  span.required *
+                .col-md-6.col-sm-6.col-xs-12
+                  input#name.form-control.col-md-7.col-xs-12(type='text', required='required', value=employee.name)
+              .form-group
+                label.control-label.col-md-3.col-sm-3.col-xs-12 Gender
+                .col-md-6.col-sm-6.col-xs-12
+                  #gender.btn-group(data-toggle='buttons')
+                    label.btn.btn-default(data-toggle-class='btn-primary', data-toggle-passive-class='btn-default')
+                      input(type='radio', name='gender', value='male')
+                      |    Male
+                    label.btn.btn-primary(data-toggle-class='btn-primary', data-toggle-passive-class='btn-default')
+                      input(type='radio', name='gender', value='female')
+                      |  Female
+              .form-group
+                label.control-label.col-md-3.col-sm-3.col-xs-12(for='wage')
+                  | Hourly Wage
+                  span.required *
+                .col-md-6.col-sm-6.col-xs-12
+                  input#wage.form-control.col-md-7.col-xs-12(required='required', type='text')
+              .form-group
+                label.control-label.col-md-3.col-sm-3.col-xs-12
+                  | Date Of Birth
+                  span.required *
+                .col-md-6.col-sm-6.col-xs-12
+                  input#birthday.date-picker.form-control.col-md-7.col-xs-12(required='required', type='text')
+              .ln_solid
+              .form-group
+                .col-md-6.col-sm-6.col-xs-12.col-md-offset-3
+                  button.btn.btn-primary(type='button') Cancel
+                  button.btn.btn-primary(type='reset') Reset
+                  button.btn.btn-success(type='submit') Submit
