@@ -50,7 +50,7 @@ var routerMaker = function (db) {
     var id = req.params.id || req.body.id;
     var first_name = req.body.first_name;
     var last_name = req.body.last_name;
-    var wage = req.body.wage;
+    var wage = Number(req.body.wage);
 
     // Find the employee with the given ID and update his info
     db.updateEmployee({
