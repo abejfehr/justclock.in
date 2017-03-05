@@ -17,6 +17,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.os.AsyncTask;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -161,7 +162,8 @@ public class ledControl extends ActionBarActivity {
                         toast.show();
 
                         employee = new JSONObject();
-                        employee.put(employeeID, employeeTime);
+                        employee.put("employee_id", employeeID);
+                        employee.put("timestamp", employeeTime);
                         allEmployees.put(employee);
 
                         shouldReadTime = false;
@@ -190,7 +192,13 @@ public class ledControl extends ActionBarActivity {
                     public void onErrorResponse(VolleyError error) {
                     }
                 });
-// Add the request to the RequestQueue.
+
+                jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                        0,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+                // Add the request to the RequestQueue.
                 queue.add(jsonObjectRequest);
 
             } catch (IOException e) {
