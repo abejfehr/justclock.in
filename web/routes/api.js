@@ -18,6 +18,7 @@ var routerMaker = function (db) {
      // Sort the data into punches per employee
      // Try to sort the punches into shifts (the shifts could be open-ended)
      // Add that data into the database
+     console.log("This worked!");
   });
 
   return router;

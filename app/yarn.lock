@@ -2989,6 +2989,10 @@ react-native:
     xmldoc "^0.4.0"
     yargs "^6.4.0"
 
+react-native-ble-manager:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-ble-manager/-/react-native-ble-manager-3.1.2.tgz#914b00e1bc2ac06eab17570cfc9aa9fd1ea2f9f6"
+
 react-proxy@^1.1.7:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/react-proxy/-/react-proxy-1.1.8.tgz#9dbfd9d927528c3aa9f444e4558c37830ab8c26a"
