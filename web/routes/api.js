@@ -43,8 +43,8 @@ var routerMaker = function (db) {
        for (let i = 0; i < punches.length - 1; i += 2) {
          console.log(punches[i], punches[i+1]);
          db.addShift(employee_id, {
-           in: punches[i],
-           out: punches[i+1],
+           in: Number(punches[i]),
+           out: Number(punches[i+1]),
          });
          // This throws out the very last punch in case there's an in without an out
        }
