@@ -1,5 +1,6 @@
 package com.led_on_off.led;
 
+import android.content.Context;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,7 +16,12 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.os.AsyncTask;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
 
 
@@ -56,7 +62,8 @@ public class ledControl extends ActionBarActivity {
             @Override
             public void onClick(View v)
             {
-                turnOnLed();      //method to turn on
+//                turnOnLed();      //method to turn on
+                getData();
             }
         });
 
@@ -93,6 +100,71 @@ public class ledControl extends ActionBarActivity {
         }
         finish(); //return to the first layout
 
+    }
+
+    private void getData() {
+        if (btSocket != null) {
+            try {
+                btSocket.getOutputStream().write("g".toString().getBytes());
+
+                JSONObject employee;
+                JSONArray  allEmployees = new JSONArray();
+                ArrayList<Integer> bytes = new ArrayList();
+
+                String employeeID, employeeTime;
+                int value = 0;
+                boolean shouldRead = false;
+                Context context = getApplicationContext();
+                int duration = Toast.LENGTH_SHORT;
+
+                // Allows the input stream to fill with data
+                Thread.sleep(250);
+
+                while (btSocket.getInputStream().available() > 0) {
+                    value = btSocket.getInputStream().read();
+                    CharSequence text = "v: " + String.valueOf(value);
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+
+                    if (value == 2) {
+                        shouldRead = true;
+                    } else if (shouldRead && bytes.size() < 4) {
+                        bytes.add(value);
+                    } else if (shouldRead && value == 3) {
+                        // bytes is currently an ID
+                        byte[] b = new byte[4];
+                        for (int i = 0; i < 4; i++) {
+                            b[i] = bytes.get(i).byteValue();
+                        }
+                        bytes.clear();
+                        employeeID = new String(b, "UTF-8");
+                        text = "id: " + String.valueOf(employeeID);
+
+                        toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                    } else if (shouldRead && bytes.size() < 4) {
+                        // bytes is currently an ID
+                        byte[] b = new byte[4];
+                        for (int i = 0; i < 4; i++) {
+                            b[i] = bytes.get(i).byteValue();
+                        }
+                        bytes.clear();
+                        employeeTime = new String(b, "UTF-8");
+                        text = "id: " + String.valueOf(employeeTime);
+
+                        toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                    } else if (shouldRead && value == 4){
+                        shouldRead = false;
+                    }
+                }
+            } catch (IOException e) {
+                msg("Error");
+            } catch (InterruptedException e) {
+                msg("Error");
+            }
+        }
     }
 
     private void turnOffLed()

@@ -3,39 +3,39 @@
 
     <item
         is-multidex="false"
-        jar="/Users/abejfehr/.android/build-cache/1a897d3d320ed178a37d49c7173e582d1ff35254/output/jars/classes.jar"
+        jar="/home/terence/.android/build-cache/cf500cb29485695e603d85fe2a4135b67d48205b/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="/Users/abejfehr/Development/justclock.in/android/app/build/intermediates/pre-dexed/debug/classes_2b420324f4ee9c46e9d966025390017cd5bb61f9.jar" />
+        <dex dex="/home/terence/Development/justclock.in/android/app/build/intermediates/pre-dexed/debug/classes_c17a0e1eecc2caedfd705960e0206f1b05031d49.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/abejfehr/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="/Users/abejfehr/Development/justclock.in/android/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3_f37e64b427d05bfc677ea5f00d1cec7776a45a33.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/abejfehr/.android/build-cache/5545195477090d5634d8100dcc8daf5247d955f5/output/jars/libs/internal_impl-21.0.3.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="/Users/abejfehr/Development/justclock.in/android/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3_b14d2a08cdd4ea8da461444716a20c3e05857de9.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/abejfehr/.android/build-cache/5545195477090d5634d8100dcc8daf5247d955f5/output/jars/classes.jar"
+        jar="/home/terence/.android/build-cache/72ee221f59e460f05aabe27555f5ff52ea4a7b76/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="/Users/abejfehr/Development/justclock.in/android/app/build/intermediates/pre-dexed/debug/classes_a5ea67687ea4591a366eeaa594bed1cf7d2da946.jar" />
+        <dex dex="/home/terence/Development/justclock.in/android/app/build/intermediates/pre-dexed/debug/classes_19c2b6bb40d292975d5824674a23c4a166e666ea.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/terence/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="/home/terence/Development/justclock.in/android/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3_6e2fbb874bad01939cfc0b8152e4ce11180bb53f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/terence/.android/build-cache/72ee221f59e460f05aabe27555f5ff52ea4a7b76/output/jars/libs/internal_impl-21.0.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="/home/terence/Development/justclock.in/android/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3_80cbe822a3ac9a2112a57bde35285cb82d701857.jar" />
     </item>
 
 </items>
