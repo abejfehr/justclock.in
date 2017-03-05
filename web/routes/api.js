@@ -44,6 +44,7 @@ var routerMaker = function (db) {
 
      // Add that data into the database
      console.log("This worked!");
+     console.log(data);
   });
 
   router.post('/employees/manage/:id?', function(req, res, next) {
