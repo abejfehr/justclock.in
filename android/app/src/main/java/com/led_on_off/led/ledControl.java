@@ -16,6 +16,14 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.os.AsyncTask;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -157,6 +165,23 @@ public class ledControl extends ActionBarActivity {
                         shouldRead = false;
                     }
                 }
+
+                // Send the data to the server
+                RequestQueue queue = Volley.newRequestQueue(this);
+                String url ="https://www.justclock.in/api/import";
+
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                    }
+                });
+// Add the request to the RequestQueue.
+                queue.add(jsonObjectRequest);
+
             } catch (IOException e) {
                 msg("Error");
             } catch (InterruptedException e) {
