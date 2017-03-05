@@ -135,6 +135,13 @@ var createDatabase = function () {
         }, data));
       }
     },
+    addShift: function (employee_id, shift) {
+      for (let i = 0; i < _db.employees.length; ++i) {
+        if (_db.employees[i].id == employee_id) {
+          _db.employees[i].shifts.push(shift);
+        }
+      }
+    }
   };
 
 };

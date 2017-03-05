@@ -41,7 +41,8 @@ var routerMaker = function (db) {
 
        console.log(4);
        for (let i = 0; i < punches.length - 1; i += 2) {
-         db.addPunch(employee_id, {
+         console.log(punches[i], punches[i+1]);
+         db.addShift(employee_id, {
            in: punches[i],
            out: punches[i+1],
          });
