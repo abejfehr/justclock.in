@@ -7,8 +7,9 @@ html(lang='en')
     meta(name='description', content='')
     meta(name='author', content='')
     title Just Clock In - Time Clock Management Solution
-    link(rel='shortcut icon', href='/favicon.ico', type='image/x-icon')
-    link(rel='icon', href='/favicon.ico', type='image/x-icon')
+    link(rel='apple-touch-icon', sizes='152x152', href='/apple-touch-icon.png')
+    link(rel='icon', type='image/png', href='/favicon-32x32.png', sizes='32x32')
+    link(rel='icon', type='image/png', href='/favicon-16x16.png', sizes='16x16')
     // Bootstrap Core CSS
     link(href='stylesheets/bootstrap.min.css', rel='stylesheet')
     // Custom CSS
@@ -32,17 +33,17 @@ html(lang='en')
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar-brand.topnav(href='#')
+          a.navbar-brand.topnav(href='/')
             img(src='images/logo.png')
         // Collect the nav links, forms, and other content for toggling
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
           ul.nav.navbar-nav.navbar-right
             li
-              a(href='#about') About
+              a(href='#') About
             li
-              a(href='#services') Services
+              a(href='#') Services
             li
-              a(href='#contact') Contact
+              a(href='#') Contact
         // /.navbar-collapse
       // /.container
     // Header
@@ -55,10 +56,11 @@ html(lang='en')
               h1 Just Clock In
               h3 A comprehensive time clock management solution
               hr.intro-divider
+              p Already have an account?
               ul.list-inline.intro-social-buttons
                 li
                   a.btn.btn-default.btn-lg(href='app/login')
-                    i.fa.fa-twitter.fa-fw
+                    i.fa.fa-sign-in.fa-fw
                     span.network-name Login
       // /.container
     // /.intro-header
@@ -75,7 +77,7 @@ html(lang='en')
             p.lead
               | JustClock.in doesn't need WiFi, bluetooth, or cellular connectivity to track employees' punches.
           .col-lg-5.col-lg-offset-2.col-sm-6
-            img.img-responsive(src='images/ipad.png', alt='')
+            img.img-responsive(src='images/cards2.png', alt='')
       // /.container
     // /.content-section-a
     .content-section-b
@@ -87,9 +89,10 @@ html(lang='en')
             h2.section-heading
               | Always up to date
             p.lead
-              | Our management software is online, so you don't need to buy new software, _ever_.
+              | Our management software is online, so you don't need to buy new software,&nbsp;
+              span(style='font-style:italic') ever.
           .col-lg-5.col-sm-pull-6.col-sm-6
-            img.img-responsive(src='images/dog.png', alt='')
+            img.img-responsive(src='images/anywhere.png', alt='')
       // /.container
     // /.content-section-b
     .content-section-a
@@ -99,19 +102,29 @@ html(lang='en')
             hr.section-heading-spacer
             .clearfix
             h2.section-heading
-              | Google Web Fonts and
-              br
-              | Font Awesome Icons
+              | Empower your workflow
             p.lead
-              | This template features the 'Lato' font, part of the
-              a(target='_blank', href='http://www.google.com/fonts') Google Web Font library
-              | , as well as
-              a(target='_blank', href='http://fontawesome.io') icons from Font Awesome
-              | .
+              | Just Clock In lets you sync your hour and wage information with popular accounting software.
           .col-lg-5.col-lg-offset-2.col-sm-6
-            img.img-responsive(src='images/phones.png', alt='')
+            img.img-responsive(src='images/calculator.jpg', alt='')
       // /.container
     // /.content-section-a
+    // /.content-section-a
+    .content-section-a
+      .container
+        .row
+          .col-lg-6.col-lg-offset-3.col-sm-6.col-sm-offset-3(style='text-align: center;')
+            hr.section-heading-spacer(style='float:none')
+            .clearfix
+            h2.section-heading
+              | Try it today!
+            p.lead
+              | Order the base station for just $150 and just pay $4.99 monthly to use the service.
+              <br />
+              <br />
+              | Don't worry, you can cancel any time
+      // /.container
+    // /.content-section-b
     a(name='contact')
     .banner
       .container
@@ -121,15 +134,7 @@ html(lang='en')
           .col-lg-6
             ul.list-inline.banner-social-buttons
               li
-                a.btn.btn-default.btn-lg(href='https://twitter.com/SBootstrap')
-                  i.fa.fa-twitter.fa-fw
-                  span.network-name Twitter
-              li
-                a.btn.btn-default.btn-lg(href='https://github.com/IronSummitMedia/startbootstrap')
-                  i.fa.fa-github.fa-fw
-                  span.network-name Github
-              li
                 a.btn.btn-default.btn-lg(href='#')
-                  i.fa.fa-linkedin.fa-fw
-                  span.network-name Linkedin
+                  i.fa.fa-evelope-o.fa-fw
+                  span.network-name Sign up
       // /.container

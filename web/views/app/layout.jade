@@ -7,8 +7,9 @@ html(lang='en')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     title Just Clock In - #{title}
-    link(rel='shortcut icon', href='/favicon.ico', type='image/x-icon')
-    link(rel='icon', href='/favicon.ico', type='image/x-icon')
+    link(rel='apple-touch-icon', sizes='152x152', href='/apple-touch-icon.png')
+    link(rel='icon', type='image/png', href='/favicon-32x32.png', sizes='32x32')
+    link(rel='icon', type='image/png', href='/favicon-16x16.png', sizes='16x16')
     // Bootstrap
     link(href='/app/bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')
     // Font Awesome
@@ -48,11 +49,11 @@ html(lang='en')
               .menu_section
                 h3 General
                 ul.nav.side-menu
-                  li
+                  li(class=section == 'home' ? 'active' : '')
                     a(href='/app')
                       i.fa.fa-home
                       |  Home
-                  li
+                  li(class=section == 'employees' ? 'active' : '')
                     a
                       i.fa.fa-users
                       |  Employees
@@ -60,40 +61,18 @@ html(lang='en')
                     ul.nav.child_menu
                       li
                         a(href='/app/employees/manage') Manage Employees
-                  li
+                  li(class=section == 'reports' ? 'active' : '')
                     a
                       i.fa.fa-line-chart
                       |  Reports
                       span.fa.fa-chevron-down
                     ul.nav.child_menu
                       li
-                        a(href='reports/employees') General Elements
-                      li
-                        a(href='media_gallery.html') Media Gallery
-                      li
-                        a(href='typography.html') Typography
-                      li
-                        a(href='icons.html') Icons
-                      li
-                        a(href='glyphicons.html') Glyphicons
-                      li
-                        a(href='widgets.html') Widgets
-                      li
-                        a(href='invoice.html') Invoice
-                      li
-                        a(href='inbox.html') Inbox
-                      li
-                        a(href='calendar.html') Calendar
-                  li
-                    a
+                        a(href='/app/reports/employees') Total Hours Report
+                  li(class=section == 'settings' ? 'active' : '')
+                    a(href='#')
                       i.fa.fa-sliders
                       |  Settings
-                      span.fa.fa-chevron-down
-                    ul.nav.child_menu
-                      li
-                        a(href='tables.html') Tables
-                      li
-                        a(href='tables_dynamic.html') Table Dynamic
             // /sidebar menu
             // /menu footer buttons
             .sidebar-footer.hidden-small

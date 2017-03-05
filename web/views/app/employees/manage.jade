@@ -5,7 +5,7 @@ block content
     .page-title
       .title_left
         h3
-          | Employees
+          | Manage Employees
       .title_right
         .col-md-5.col-sm-5.col-xs-12.form-group.pull-right.top_search
           .input-group
@@ -18,20 +18,14 @@ block content
         .x_panel
           .x_title
             h2
-              | Striped table
-              small Stripped table subtitle
+              | Employee List
             ul.nav.navbar-right.panel_toolbox
               li
                 a.collapse-link
                   i.fa.fa-chevron-up
               li.dropdown
-                a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
-                  i.fa.fa-wrench
-                ul.dropdown-menu(role='menu')
-                  li
-                    a(href='#') Settings 1
-                  li
-                    a(href='#') Settings 2
+                a(href='/api/employees/excel/')
+                  i.fa.fa-table
               li
                 a.close-link
                   i.fa.fa-close
@@ -41,15 +35,20 @@ block content
               thead
                 tr
                   th ID
-                  th Name
+                  th First Name
+                  th Last Name
                   th Wage
                   th
               tbody
                 - for (var i = 0; i < employees.length; ++i) {
                   tr
                     th(scope='row')= employees[i].id
-                    td= employees[i].name
+                    td= employees[i].first_name
+                    td= employees[i].last_name
                     td= employees[i].wage
                     td
-                      a(href='/app/employees/edit/#{employees[i].id}') edit
+                      a(href='/app/employees/edit/#{employees[i].id}') Edit
                 - }
+                tr
+                  td(colspan='5',style='text-align:center;')
+                    a(href='/app/employees/add') Add New Employee
