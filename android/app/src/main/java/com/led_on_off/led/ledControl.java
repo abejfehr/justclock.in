@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import android.app.ProgressDialog;
@@ -37,7 +38,7 @@ import java.util.UUID;
 public class ledControl extends ActionBarActivity {
 
    // Button btnOn, btnOff, btnDis;
-    ImageButton On, Off, Discnt, Abt;
+    Button On, Discnt;
     String address = null;
     private ProgressDialog progress;
     BluetoothAdapter myBluetooth = null;
@@ -55,7 +56,7 @@ public class ledControl extends ActionBarActivity {
         address = newint.getStringExtra(DeviceList.EXTRA_ADDRESS); //receive the address of the bluetooth device
 
         //view of the ledControl
-        setContentView(R.layout.activity_led_control);
+        setContentView(R. layout.activity_led_control);
 
         //call the widgets
         On = (ImageButton)findViewById(R.id.on);
@@ -71,14 +72,6 @@ public class ledControl extends ActionBarActivity {
             {
 //                turnOnLed();      //method to turn on
                 getData();
-            }
-        });
-
-        Off.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                turnOffLed();   //method to turn off
             }
         });
 
