@@ -17,9 +17,11 @@ var routerMaker = function (db) {
      * }
      */
      var data = req.body.data;
+     console.log(1);
 
      // Sort the data into punches per employee
      var employees = {};
+     console.log(2);
      for (let i = 0; i < data.length; ++i) {
        var punch = data[i];
        if (!employees[punch.employee_id]) {
@@ -27,12 +29,14 @@ var routerMaker = function (db) {
        }
        employees[punch.employee_id].push(punch.timestamp);
      }
+     console.log(3);
      // Try to sort the punches into shifts (the shifts could be open-ended)
      for (let employee_id of employees) {
        var punches = employees[employee_id].sort(function (a, b) {
          return b - a;
        });
 
+       console.log(4);
        for (let i = 0; i < punches.length - 1; i += 2) {
          db.addPunch(employee_id, {
            in: punches[i],
@@ -41,6 +45,8 @@ var routerMaker = function (db) {
          // This throws out the very last punch in case there's an in without an out
        }
      }
+     console.log(5);
+
 
      // Add that data into the database
      console.log("This worked!");
