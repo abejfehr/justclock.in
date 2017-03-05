@@ -50,9 +50,7 @@ public class ledControl extends ActionBarActivity {
 
         //call the widgets
         On = (ImageButton)findViewById(R.id.on);
-        Off = (ImageButton)findViewById(R.id.off);
         Discnt = (ImageButton)findViewById(R.id.discnt);
-        Abt = (ImageButton)findViewById(R.id.abt);
 
         new ConnectBT().execute(); //Call the class to connect
 
@@ -201,15 +199,6 @@ public class ledControl extends ActionBarActivity {
     private void msg(String s)
     {
         Toast.makeText(getApplicationContext(),s,Toast.LENGTH_LONG).show();
-    }
-
-    public  void about(View v)
-    {
-        if(v.getId() == R.id.abt)
-        {
-            Intent i = new Intent(this, AboutActivity.class);
-            startActivity(i);
-        }
     }
 
     @Override
