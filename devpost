@@ -4,7 +4,7 @@ Construction companies need to track their employees' work hours and be able to 
 
 ## What it does
 
-
+Just Clock In is a time clock solution for businesses. Each employee is given a key card which they use to punch in and out for shifts at a special station, and employers can generate reports from the data and import hours into their favourite accounting software.
 
 ## How we built it
 
@@ -22,19 +22,23 @@ Templates
 
 ## Challenges we ran into
 
-* Complications connecting to BLE devices using iPhone 5S
+* Connecting to our BLE device using an iPhone 5S didn't seem to work
 * Creating PDF reports and Excel spreadsheets on the fly from a NodeJS server
 * Naked domain records on AWS without Elastic Beanstalk or Route53
 * Allowing simultaneous serial communication between 2 modules through an Arduino
-* My AWS account was suspended so my $100 couldn't be spent
+* One of our AWS accounts was suspended so we had trouble using the $100 credit
 * Many, _many_, off-by-one errors
 
 ## Accomplishments that we're proud of
 
-The entire thing. 2 people built this in less than 24 hours, it's a pretty amazing thing.
+The entire thing.
+
+2 people built this in less than 24 hours, it's a pretty amazing thing, we're proud of all of it!
 
 ## What we learned
 
+Abe: I learned that you should test libraries you plan on using before the event, to make sure they really do what you think they'll do. We had to turn around completely from a React Native app on my iOS devices to doing native Android development on my partner's device.
+
 ## What's next for JustClock.in
 
-Get investors and make the product a reality
+Hopefully someday a competitive product like this can exist. If an investment were offered, we'd consider making this into a polished product fit for actual sale.
