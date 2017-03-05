@@ -17,7 +17,7 @@ block content
         .x_panel
           .x_title
             h2
-              | Edit Employee
+              | Add Employee
             ul.nav.navbar-right.panel_toolbox
               li
                 a.collapse-link
@@ -36,24 +36,25 @@ block content
             .clearfix
           .x_content
             br
-            form#demo-form2.form-horizontal.form-label-left(data-parsley-validate='',action='/api/employees/manage/#{employee.id}',method='post')
+            form#demo-form2.form-horizontal.form-label-left(data-parsley-validate='',action='/api/employees/manage',method='post')
               .form-group
                 label.control-label.col-md-3.col-sm-3.col-xs-12(for='id')
                   | ID
+                  span.required *
                 .col-md-6.col-sm-6.col-xs-12
-                  input#name.form-control.col-md-7.col-xs-12(disabled, name='id', type='text', value=employee.id)
+                  input#name.form-control.col-md-7.col-xs-12(name='id', type='text', required='required')
               .form-group
                 label.control-label.col-md-3.col-sm-3.col-xs-12(for='first_name')
                   | First Name
                   span.required *
                 .col-md-6.col-sm-6.col-xs-12
-                  input#name.form-control.col-md-7.col-xs-12(name='first_name', type='text', required='required', value=employee.first_name)
+                  input#name.form-control.col-md-7.col-xs-12(name='first_name', type='text', required='required')
               .form-group
                 label.control-label.col-md-3.col-sm-3.col-xs-12(for='last_name')
                   | Last Name
                   span.required *
                 .col-md-6.col-sm-6.col-xs-12
-                  input#name.form-control.col-md-7.col-xs-12(name='last_name', type='text', required='required', value=employee.last_name)
+                  input#name.form-control.col-md-7.col-xs-12(name='last_name', type='text', required='required')
               .form-group
                 label.control-label.col-md-3.col-sm-3.col-xs-12 Gender
                 .col-md-6.col-sm-6.col-xs-12
@@ -69,7 +70,7 @@ block content
                   | Hourly Wage
                   span.required *
                 .col-md-6.col-sm-6.col-xs-12
-                  input#wage.form-control.col-md-7.col-xs-12(name='wage', required='required', type='text', value=employee.wage)
+                  input#wage.form-control.col-md-7.col-xs-12(name='wage', required='required', type='text')
               .form-group
                 label.control-label.col-md-3.col-sm-3.col-xs-12
                   | Date Of Birth

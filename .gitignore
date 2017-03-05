@@ -3,3 +3,6 @@
 
 # Stupid errors
 npm-debug.log
+
+# The web's node modules
+web/node_modules
