@@ -31,7 +31,10 @@ var routerMaker = function (db) {
      }
      console.log(3);
      // Try to sort the punches into shifts (the shifts could be open-ended)
-     for (let employee_id of employees) {
+     var keys = Object.keys(employees);
+     for (let j = 0; j < keys.length; ++j) {
+       var employee_id = keys[j];
+       console.log('x');
        var punches = employees[employee_id].sort(function (a, b) {
          return b - a;
        });
