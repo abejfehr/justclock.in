@@ -3,6 +3,24 @@
 
     <item
         is-multidex="false"
+        jar="/home/terence/.android/build-cache/5e0823edf5531b3f9d9b21e4456268d694f91d4c/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="2cd4b982617e544728de0782d718a58ce1b06e3f">
+        <dex dex="/home/terence/Development/justclock.in/android/app/build/intermediates/pre-dexed/debug/classes_04d6b0e3438d52a117e57372f5ade4f1da4f875d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/terence/.android/build-cache/72ee221f59e460f05aabe27555f5ff52ea4a7b76/output/jars/libs/internal_impl-21.0.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="/home/terence/Development/justclock.in/android/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3_80cbe822a3ac9a2112a57bde35285cb82d701857.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/home/terence/.android/build-cache/cf500cb29485695e603d85fe2a4135b67d48205b/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
@@ -27,15 +45,6 @@
         revision="25.0.0"
         sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
         <dex dex="/home/terence/Development/justclock.in/android/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3_6e2fbb874bad01939cfc0b8152e4ce11180bb53f.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/terence/.android/build-cache/72ee221f59e460f05aabe27555f5ff52ea4a7b76/output/jars/libs/internal_impl-21.0.3.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="/home/terence/Development/justclock.in/android/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3_80cbe822a3ac9a2112a57bde35285cb82d701857.jar" />
     </item>
 
 </items>

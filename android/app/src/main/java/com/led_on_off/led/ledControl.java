@@ -17,6 +17,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.os.AsyncTask;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -59,8 +60,8 @@ public class ledControl extends ActionBarActivity {
         setContentView(R. layout.activity_led_control);
 
         //call the widgets
-        On = (ImageButton)findViewById(R.id.on);
-        Discnt = (ImageButton)findViewById(R.id.discnt);
+        On = (Button)findViewById(R.id.on);
+        Discnt = (Button)findViewById(R.id.discnt);
 
         new ConnectBT().execute(); //Call the class to connect
 
@@ -112,7 +113,7 @@ public class ledControl extends ActionBarActivity {
                 ArrayList<Integer> bytes = new ArrayList();
                 final int idLen = 8, timeLen = 10;
 
-                String employeeID, employeeTime;
+                String employeeID = "", employeeTime = "";
                 int value = 0;
                 boolean shouldReadId = false, shouldReadTime = false;
                 Context context = getApplicationContext();
@@ -128,13 +129,9 @@ public class ledControl extends ActionBarActivity {
                 while (btSocket.getInputStream().available() > 0) {
                     value = btSocket.getInputStream().read();
 
-                    if (value == 2) {
-                        shouldReadId = true;
-                    } else if (shouldReadId && bytes.size() < idLen) {
+                    if (shouldReadId && value != 3) {
                         bytes.add(value);
-                    }
-
-                    if (shouldReadId && value == 3) {
+                    } else if (shouldReadId && value == 3) {
                         // bytes is currently an ID
                         byte[] b = new byte[idLen];
                         for (int i = 0; i < idLen; i++) {
@@ -147,14 +144,12 @@ public class ledControl extends ActionBarActivity {
                         toast = Toast.makeText(context, text, duration);
                         toast.show();
 
-                        shouldReadTime = true;
                         shouldReadId = false;
-                    } else if (shouldReadTime && bytes.size() < timeLen) {
+                        shouldReadTime = true;
+                    } else if (shouldReadTime && value != 25) {
                         bytes.add(value);
-                    }
-
-                    if (shouldReadTime && value == 4) {
-                        // bytes is currently a time
+                    } else if (shouldReadTime && value == 25) {
+                        // bytes is currently a timestamp
                         byte[] b = new byte[timeLen];
                         for (int i = 0; i < timeLen; i++) {
                             b[i] = bytes.get(i).byteValue();
@@ -166,8 +161,14 @@ public class ledControl extends ActionBarActivity {
                         toast = Toast.makeText(context, text, duration);
                         toast.show();
 
+                        employee = new JSONObject();
+                        employee.put("employee_id", employeeID);
+                        employee.put("timestamp", employeeTime);
+                        allEmployees.put(employee);
+
                         shouldReadTime = false;
-                        shouldReadId = false;
+                    } else if (value == 2) {
+                        shouldReadId = true;
                     }
                 }
 
@@ -191,12 +192,20 @@ public class ledControl extends ActionBarActivity {
                     public void onErrorResponse(VolleyError error) {
                     }
                 });
-// Add the request to the RequestQueue.
+
+                jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                        0,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+                // Add the request to the RequestQueue.
                 queue.add(jsonObjectRequest);
 
             } catch (IOException e) {
                 msg("Error");
             } catch (InterruptedException e) {
+                msg("Error");
+            } catch (JSONException e) {
                 msg("Error");
             }
         }
