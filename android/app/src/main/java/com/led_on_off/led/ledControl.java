@@ -56,7 +56,7 @@ public class ledControl extends ActionBarActivity {
         address = newint.getStringExtra(DeviceList.EXTRA_ADDRESS); //receive the address of the bluetooth device
 
         //view of the ledControl
-        setContentView(R.layout.activity_led_control);
+        setContentView(R. layout.activity_led_control);
 
         //call the widgets
         On = (Button)findViewById(R.id.on);
@@ -171,10 +171,17 @@ public class ledControl extends ActionBarActivity {
                 }
 
                 // Send the data to the server
+                JSONObject body = new JSONObject();
+                try {
+                    body.put("data", allEmployees);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
                 RequestQueue queue = Volley.newRequestQueue(this);
                 String url ="https://www.justclock.in/api/import";
 
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, body, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                     }
