@@ -110,31 +110,34 @@ public class ledControl extends ActionBarActivity {
                 JSONObject employee;
                 JSONArray  allEmployees = new JSONArray();
                 ArrayList<Integer> bytes = new ArrayList();
+                final int idLen = 8, timeLen = 10;
 
                 String employeeID, employeeTime;
                 int value = 0;
-                boolean shouldRead = false;
+                boolean shouldReadId = false, shouldReadTime = false;
                 Context context = getApplicationContext();
                 int duration = Toast.LENGTH_SHORT;
 
+                CharSequence text = "";
+
+                Toast toast = Toast.makeText(context, text, duration);
+
                 // Allows the input stream to fill with data
-                Thread.sleep(250);
+                Thread.sleep(500);
 
                 while (btSocket.getInputStream().available() > 0) {
                     value = btSocket.getInputStream().read();
-                    CharSequence text = "v: " + String.valueOf(value);
-
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
 
                     if (value == 2) {
-                        shouldRead = true;
-                    } else if (shouldRead && bytes.size() < 4) {
+                        shouldReadId = true;
+                    } else if (shouldReadId && bytes.size() < idLen) {
                         bytes.add(value);
-                    } else if (shouldRead && value == 3) {
+                    }
+
+                    if (shouldReadId && value == 3) {
                         // bytes is currently an ID
-                        byte[] b = new byte[4];
-                        for (int i = 0; i < 4; i++) {
+                        byte[] b = new byte[idLen];
+                        for (int i = 0; i < idLen; i++) {
                             b[i] = bytes.get(i).byteValue();
                         }
                         bytes.clear();
@@ -143,20 +146,28 @@ public class ledControl extends ActionBarActivity {
 
                         toast = Toast.makeText(context, text, duration);
                         toast.show();
-                    } else if (shouldRead && bytes.size() < 4) {
-                        // bytes is currently an ID
-                        byte[] b = new byte[4];
-                        for (int i = 0; i < 4; i++) {
+
+                        shouldReadTime = true;
+                        shouldReadId = false;
+                    } else if (shouldReadTime && bytes.size() < timeLen) {
+                        bytes.add(value);
+                    }
+
+                    if (shouldReadTime && value == 4) {
+                        // bytes is currently a time
+                        byte[] b = new byte[timeLen];
+                        for (int i = 0; i < timeLen; i++) {
                             b[i] = bytes.get(i).byteValue();
                         }
                         bytes.clear();
                         employeeTime = new String(b, "UTF-8");
-                        text = "id: " + String.valueOf(employeeTime);
+                        text = "time: " + String.valueOf(employeeTime);
 
                         toast = Toast.makeText(context, text, duration);
                         toast.show();
-                    } else if (shouldRead && value == 4){
-                        shouldRead = false;
+
+                        shouldReadTime = false;
+                        shouldReadId = false;
                     }
                 }
             } catch (IOException e) {

@@ -33,18 +33,6 @@ struct Employee punches[maxPunches];
 void setup() {
   Serial.begin(9600);
   btSerial.begin(9600);
-
-  long a = 1234567890;
-
-  Serial.print("Original: "); Serial.println(a);
-
-  Serial.print("Byte Arr: ");
-  byte z[4];
-  longToByteArr(z, a);
-  String(a).getBytes(z, 4);
-  for (int i = 0; i < 4; i++) {
-    Serial.print(z[i]); Serial.print(", ");
-  }
   
   pinMode(RFIDPin, INPUT);
 
@@ -129,10 +117,11 @@ unsigned long getUnixTimestamp() {
 }
 
 void getBluetooth() {
-  btSerial.write(1);
   char data = btSerial.read();
   if (data == 'g') {
-    byte sendData[4];
+    const int timeLen = 11, idLen = 9;
+    byte sendTime[timeLen];
+    byte sendId[idLen];
     for (int i = 0; i < punchCursor; i++) {
       Serial.print("Sending...");
       Serial.print(punches[i].ID);
@@ -140,22 +129,20 @@ void getBluetooth() {
       
       btSerial.write(2);
       
-//      longToByteArr(sendData, punches[i].ID);
-      String(punches[i].ID).getBytes(sendData, 4);
-      for (int b = 0; b < 4; b++) {
-        btSerial.write(sendData[b]);
-        Serial.print(sendData[b]); Serial.print(" ");
+      String(punches[i].ID).getBytes(sendId, idLen);
+      for (int b = 0; b < idLen-1; b++) {
+        btSerial.write(sendId[b]);
+        Serial.print(sendId[b]); Serial.print(" ");
       }
 
       btSerial.write(3);
 
-      Serial.print("\nSending..."); Serial.print(punches[i].unix_time); Serial.print("...");
+      Serial.print("\nSending..."); Serial.print(String(punches[i].unix_time)); Serial.print("...");
         
-//      longToByteArr(sendData, punches[i].unix_time);
-      String(punches[i].unix_time).getBytes(sendData, 4);
-      for (int b = 0; b < 4; b++) {
-        btSerial.write(sendData[b]);  
-        Serial.print(sendData[b]); Serial.print(" ");   
+      String(punches[i].unix_time).getBytes(sendTime, timeLen);
+      for (int b = 0; b < timeLen-1; b++) {
+        btSerial.write(sendTime[b]);  
+        Serial.print(sendTime[b]); Serial.print(" ");   
       }
     }
 
@@ -200,18 +187,4 @@ void printTime()
                  String(rtc.month()) + "/"); // Print month
 #endif
   Serial.println(String(rtc.year()));        // Print year
-}
-
-void longToByteArr(byte* arr, long value) {
-  arr[0] = (byte)((value >> 24) & 0xFF);
-  arr[1] = (byte)((value >> 16) & 0xFF);
-  arr[2] = (byte)((value >> 8) & 0xFF);
-  arr[3] = (byte)(value & 0xFF);
-}
-
-long byteArrToLong(byte* arr) {
-  return ((arr[0] >> 24) & 0xFF) + 
-         ((arr[1] >> 16) & 0xFF) + 
-         ((arr[2] >> 8) & 0xFF) + 
-          (arr[3] & 0xFF);
 }
