@@ -4,7 +4,8 @@ block content
   div
     .page-title
       .title_left
-        h3 Employee Management
+        h3
+          | Employees
       .title_right
         .col-md-5.col-sm-5.col-xs-12.form-group.pull-right.top_search
           .input-group
@@ -17,7 +18,8 @@ block content
         .x_panel
           .x_title
             h2
-              | Edit Employee
+              | Striped table
+              small Stripped table subtitle
             ul.nav.navbar-right.panel_toolbox
               li
                 a.collapse-link
@@ -35,39 +37,19 @@ block content
                   i.fa.fa-close
             .clearfix
           .x_content
-            br
-            form#demo-form2.form-horizontal.form-label-left(data-parsley-validate='')
-              .form-group
-                label.control-label.col-md-3.col-sm-3.col-xs-12(for='name')
-                  | Name
-                  span.required *
-                .col-md-6.col-sm-6.col-xs-12
-                  input#name.form-control.col-md-7.col-xs-12(type='text', required='required', value=employee.name)
-              .form-group
-                label.control-label.col-md-3.col-sm-3.col-xs-12 Gender
-                .col-md-6.col-sm-6.col-xs-12
-                  #gender.btn-group(data-toggle='buttons')
-                    label.btn.btn-default(data-toggle-class='btn-primary', data-toggle-passive-class='btn-default')
-                      input(type='radio', name='gender', value='male')
-                      |    Male
-                    label.btn.btn-primary(data-toggle-class='btn-primary', data-toggle-passive-class='btn-default')
-                      input(type='radio', name='gender', value='female')
-                      |  Female
-              .form-group
-                label.control-label.col-md-3.col-sm-3.col-xs-12(for='wage')
-                  | Hourly Wage
-                  span.required *
-                .col-md-6.col-sm-6.col-xs-12
-                  input#wage.form-control.col-md-7.col-xs-12(required='required', type='text')
-              .form-group
-                label.control-label.col-md-3.col-sm-3.col-xs-12
-                  | Date Of Birth
-                  span.required *
-                .col-md-6.col-sm-6.col-xs-12
-                  input#birthday.date-picker.form-control.col-md-7.col-xs-12(required='required', type='text')
-              .ln_solid
-              .form-group
-                .col-md-6.col-sm-6.col-xs-12.col-md-offset-3
-                  button.btn.btn-primary(type='button') Cancel
-                  button.btn.btn-primary(type='reset') Reset
-                  button.btn.btn-success(type='submit') Submit
+            table.table.table-striped
+              thead
+                tr
+                  th ID
+                  th Name
+                  th Wage
+                  th
+              tbody
+                - for (var i = 0; i < employees.length; ++i) {
+                  tr
+                    th(scope='row')= employees[i].id
+                    td= employees[i].name
+                    td= employees[i].wage
+                    td
+                      a(href='/app/employees/edit/#{employees[i].id}') edit
+                - }

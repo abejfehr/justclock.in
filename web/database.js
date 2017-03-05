@@ -30,6 +30,14 @@ var createDatabase = function () {
         }
       }
     },
+    updateEmployee: function (data) {
+      for (let i = 0; i < _db.employees.length; ++i) {
+        if (_db.employees[i].id == data.id) {
+          _db.employees[i].name = data.name;
+          _db.employees[i].wage = data.wage;
+        }
+      }
+    },
   };
 
 };

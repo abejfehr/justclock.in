@@ -4,19 +4,23 @@ var Report = require('fluentreports').Report;
 
 var routerMaker = function (db) {
 
-  router.get('/', function(req, res, next) {
+  router.get('/', function (req, res, next) {
     res.render('app/index', { title: 'Dashboard' });
   });
 
-  router.get('/login', function(req, res, next) {
+  router.get('/login', function (req, res, next) {
     res.render('app/login', { title: 'Login' });
   });
 
-  router.get('/employees/manage/:id', function(req, res, next) {
-    res.render('app/employees/manage', { title: 'Employees - Manage', employee: db.getEmployee(req.params.id) });
+  router.get('/employees/manage', function (req, res, next) {
+    res.render('app/employees/manage', { title: 'Employees - Manage', employees: db.getEmployees() });
   });
 
-  router.get('/reports/employees', function(req, res, next) {
+  router.get('/employees/edit/:id', function (req, res, next) {
+    res.render('app/employees/edit', { title: 'Employees - Edit', employee: db.getEmployee(req.params.id) });
+  });
+
+  router.get('/reports/employees', function (req, res, next) {
     // Our Simple Data in Array format:
     var data = [];
     // Go through the database and get the actual data

@@ -21,6 +21,24 @@ var routerMaker = function (db) {
      console.log("This worked!");
   });
 
+  router.post('/employees/manage/:id', function(req, res, next) {
+    // Get the data that was given
+    var id = req.params.id;
+    var name = req.body.name;
+    var wage = req.body.wage;
+
+    // Find the employee with the given ID and update his info
+    db.updateEmployee({
+      id: id,
+      name: name,
+      wage: wage,
+    });
+
+    // Show the user the thingy
+    res.redirect('/app/employees/manage/' + id);
+  });
+
+
   return router;
 }
 

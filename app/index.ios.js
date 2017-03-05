@@ -16,13 +16,14 @@ class app extends Component {
         super()
 
         this.state = {
-            ble:null,
-            scanning:false,
+            ble: null,
+            scanning: false,
+            devices: [],
         }
     }
 
     componentDidMount() {
-        BleManager.start({showAlert: false});
+        BleManager.start({ showAlert: true });
         this.handleDiscoverPeripheral = this.handleDiscoverPeripheral.bind(this);
 
         NativeAppEventEmitter
@@ -46,8 +47,18 @@ class app extends Component {
     }
 
     handleScan() {
-        BleManager.scan([], 30, true)
+        BleManager.scan(['00001101-0000-1000-8000-00805F9B34FB'], 30, false)
             .then((results) => {console.log('Scanning...'); });
+        setTimeout(() => {
+          BleManager.getDiscoveredPeripherals([])
+              .then((peripheralsArray) => {
+                // Success code
+                console.log('Discovered peripherals: ' + peripheralsArray.length);
+                this.setState({
+                  devices: peripheralsArray.map(thing => thing.id),
+                });
+              });
+        }, 30000);
     }
 
     toggleScanning(bool){
@@ -55,7 +66,7 @@ class app extends Component {
             this.setState({scanning:true})
             this.scanning = setInterval( ()=> this.handleScan(), 3000);
         } else{
-            this.setState({scanning:false, ble: null})
+            this.setState({scanning: false, ble: null})
             clearInterval(this.scanning);
         }
     }
@@ -63,6 +74,11 @@ class app extends Component {
     handleDiscoverPeripheral(data){
         console.log('Got ble data', data);
         alert(JSON.stringify(data));
+        var devices = this.state.devices;
+        devices.push(data.id);
+        this.setState({
+          devices
+        })
         if (data.name == 'HC-06') {
           this.setState({ ble: data })
         }
@@ -77,17 +93,17 @@ class app extends Component {
             backgroundColor: '#F5FCFF',
         }
 
-        const bleList = this.state.ble
-            ? <Text> Device found: {this.state.ble.name} </Text>
-            : <Text>no devices nearby</Text>
+        const bleNotice = this.state.scanning
+            ? <Text>Scanning {this.state.devices.join(',')}</Text>
+            : <Text>Done Scanning {this.state.devices.join(',')}</Text>
 
         return (
             <View style={container}>
-                <TouchableHighlight style={{padding:20, backgroundColor:'#ccc'}} onPress={() => this.toggleScanning(!this.state.scanning) }>
-                    <Text>Scan Bluetooth ({this.state.scanning ? 'on' : 'off'})</Text>
+                <TouchableHighlight style={{padding:20, backgroundColor:'#ccc'}} disabled={this.state.scanning} onPress={() => this.toggleScanning(!this.state.scanning) }>
+                  <Text>Scan</Text>
                 </TouchableHighlight>
 
-                {bleList}
+                {bleNotice}
             </View>
         );
     }
