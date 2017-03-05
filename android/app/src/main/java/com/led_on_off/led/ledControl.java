@@ -124,7 +124,7 @@ public class ledControl extends ActionBarActivity {
                 Toast toast = Toast.makeText(context, text, duration);
 
                 // Allows the input stream to fill with data
-                Thread.sleep(500);
+                Thread.sleep(1000);
 
                 while (btSocket.getInputStream().available() > 0) {
                     value = btSocket.getInputStream().read();
