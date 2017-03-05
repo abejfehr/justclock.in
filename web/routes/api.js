@@ -32,7 +32,7 @@ var routerMaker = function (db) {
      for (let j = 0; j < keys.length; ++j) {
        var employee_id = keys[j];
        var punches = employees[employee_id].sort(function (a, b) {
-         return b - a;
+         return a - b;
        });
 
        for (let i = 0; i < punches.length - 1; i += 2) {

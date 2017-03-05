@@ -102,6 +102,13 @@ var createDatabase = function () {
           }
         ],
       },
+      {
+        id: 11703011,
+        first_name: 'Abe',
+        last_name: 'Fehr',
+        wage: 21.50,
+        shifts: [],
+      },
     ],
   };
 
