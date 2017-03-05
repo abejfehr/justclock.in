@@ -135,7 +135,7 @@ void getBluetooth() {
         Serial.print(sendId[b]); Serial.print(" ");
       }
 
-      btSerial.write(3);
+      btSerial.write(3);  
 
       Serial.print("\nSending..."); Serial.print(String(punches[i].unix_time)); Serial.print("...");
         
@@ -144,6 +144,8 @@ void getBluetooth() {
         btSerial.write(sendTime[b]);  
         Serial.print(sendTime[b]); Serial.print(" ");   
       }
+
+      btSerial.write(25);
     }
 
     // Clears punches

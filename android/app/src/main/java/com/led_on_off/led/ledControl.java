@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import android.app.ProgressDialog;
@@ -25,6 +26,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -36,7 +38,7 @@ import java.util.UUID;
 public class ledControl extends ActionBarActivity {
 
    // Button btnOn, btnOff, btnDis;
-    ImageButton On, Off, Discnt, Abt;
+    Button On, Discnt;
     String address = null;
     private ProgressDialog progress;
     BluetoothAdapter myBluetooth = null;
@@ -57,8 +59,8 @@ public class ledControl extends ActionBarActivity {
         setContentView(R.layout.activity_led_control);
 
         //call the widgets
-        On = (ImageButton)findViewById(R.id.on);
-        Discnt = (ImageButton)findViewById(R.id.discnt);
+        On = (Button)findViewById(R.id.on);
+        Discnt = (Button)findViewById(R.id.discnt);
 
         new ConnectBT().execute(); //Call the class to connect
 
@@ -70,14 +72,6 @@ public class ledControl extends ActionBarActivity {
             {
 //                turnOnLed();      //method to turn on
                 getData();
-            }
-        });
-
-        Off.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                turnOffLed();   //method to turn off
             }
         });
 
@@ -118,7 +112,7 @@ public class ledControl extends ActionBarActivity {
                 ArrayList<Integer> bytes = new ArrayList();
                 final int idLen = 8, timeLen = 10;
 
-                String employeeID, employeeTime;
+                String employeeID = "", employeeTime = "";
                 int value = 0;
                 boolean shouldReadId = false, shouldReadTime = false;
                 Context context = getApplicationContext();
@@ -134,13 +128,9 @@ public class ledControl extends ActionBarActivity {
                 while (btSocket.getInputStream().available() > 0) {
                     value = btSocket.getInputStream().read();
 
-                    if (value == 2) {
-                        shouldReadId = true;
-                    } else if (shouldReadId && bytes.size() < idLen) {
+                    if (shouldReadId && value != 3) {
                         bytes.add(value);
-                    }
-
-                    if (shouldReadId && value == 3) {
+                    } else if (shouldReadId && value == 3) {
                         // bytes is currently an ID
                         byte[] b = new byte[idLen];
                         for (int i = 0; i < idLen; i++) {
@@ -153,14 +143,12 @@ public class ledControl extends ActionBarActivity {
                         toast = Toast.makeText(context, text, duration);
                         toast.show();
 
-                        shouldReadTime = true;
                         shouldReadId = false;
-                    } else if (shouldReadTime && bytes.size() < timeLen) {
+                        shouldReadTime = true;
+                    } else if (shouldReadTime && value != 25) {
                         bytes.add(value);
-                    }
-
-                    if (shouldReadTime && value == 4) {
-                        // bytes is currently a time
+                    } else if (shouldReadTime && value == 25) {
+                        // bytes is currently a timestamp
                         byte[] b = new byte[timeLen];
                         for (int i = 0; i < timeLen; i++) {
                             b[i] = bytes.get(i).byteValue();
@@ -172,8 +160,13 @@ public class ledControl extends ActionBarActivity {
                         toast = Toast.makeText(context, text, duration);
                         toast.show();
 
+                        employee = new JSONObject();
+                        employee.put(employeeID, employeeTime);
+                        allEmployees.put(employee);
+
                         shouldReadTime = false;
-                        shouldReadId = false;
+                    } else if (value == 2) {
+                        shouldReadId = true;
                     }
                 }
 
@@ -196,6 +189,8 @@ public class ledControl extends ActionBarActivity {
             } catch (IOException e) {
                 msg("Error");
             } catch (InterruptedException e) {
+                msg("Error");
+            } catch (JSONException e) {
                 msg("Error");
             }
         }
