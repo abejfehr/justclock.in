@@ -1,6 +1,6 @@
 # [JustClockIn](https://www.justclock.in/)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/uPW2X6yl7MQ" frameborder="0" allowfullscreen></iframe>
+[![JustClockIn Demo Video](https://img.youtube.com/vi/uPW2X6yl7MQ/0.jpg)](https://www.youtube.com/watch?v=uPW2X6yl7MQ)
 
 A comprehensive time clock management solution built at [CUHacking 2017](https://cuhacking2017.devpost.com/) in just under 24 hours.
 
