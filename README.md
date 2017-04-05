@@ -7,10 +7,12 @@ A comprehensive time clock management solution built at [CUHacking 2017](https:/
 ## Inspiration
 
 Construction companies need to track their employees' work hours and be able to reliably report off of them. Unfortunately, job sites may be in rural areas where there is no reliable network connection. This project is an attempt at solving that problem.
-What it does
+
+## What it does
 
 Just Clock In is a time clock solution for businesses. Each employee is given a key card which they use to punch in and out for shifts at a special station, and employers can generate reports from the data and import hours into their favourite accounting software.
-How we built it
+
+## How we built it
 
 For the hardware we used an Arduino Uno with a Bluetooth module, RFID module, and a Real Time Clock. The Android app is written natively in Java and communicates with the Arduino over Bluetooth to retrieve data. The data is then forwarded over HTTP to an Express server on AWS hardware. The database is a custom, non-persistent, in-memory JSON database.
 
