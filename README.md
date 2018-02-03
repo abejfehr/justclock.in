@@ -1,4 +1,4 @@
-# [JustClockIn](https://www.justclock.in/)
+# [JustClockIn](https://justclockin.herokuapp.com/)
 
 [![JustClockIn Demo Video](https://img.youtube.com/vi/uPW2X6yl7MQ/0.jpg)](https://www.youtube.com/watch?v=uPW2X6yl7MQ)
 
@@ -73,4 +73,4 @@ Hopefully someday a competitive product like this can exist. If an investment we
 
 ## Try it out
 
-[www.justclock.in](https://www.justclock.in/)
+[https://justclockin.herokuapp.com/](https://justclockin.herokuapp.com/)
